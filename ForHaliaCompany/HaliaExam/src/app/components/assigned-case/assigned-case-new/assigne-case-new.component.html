@@ -1,0 +1,60 @@
+<form [formGroup]="assginedCaseForm" (ngSubmit)="assignedCaseSaved()"
+ class="border p-3 rounded-3">
+    <div class="row g-0">
+    <div class="col text-center p-2 mb-3 bg-light">
+        <span class="fs-3">Assigne Case</span>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="caseId" class="form-label">Case</label>
+            <select class="form-control" id="caseId" formControlName="caseId"> 
+                 <option *ngFor="let caseInfo of caseInfos" [value]="caseInfo.id">
+                     {{ caseInfo.name }}
+                 </option>
+             </select>
+             <div class="form-text text-danger" 
+             *ngIf="CaseId.errors?.['required'] && (CaseId.touched 
+             || CaseId.dirty)">
+             Case is required.
+             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="userId" class="form-label">User</label>
+            <select class="form-control" id="userId" formControlName="userId"> 
+                 <option *ngFor="let userInfo of userInfos" [value]="userInfo.id">
+                     {{ userInfo.firstname + ' ' + userInfo.lastname }}
+                 </option>
+             </select>
+             <div class="form-text text-danger" 
+             *ngIf="UserId.errors?.['required'] && (UserId.touched 
+             || UserId.dirty)">
+             User is required.
+             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description"
+            formControlName="description"></textarea>
+            <div class="form-text text-danger" 
+            *ngIf="Description.errors?.['required'] && (Description.touched 
+            || Description.dirty)">
+            Description is required.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="d-grid">
+                <button type="submit" 
+                [disabled]="assginedCaseForm.invalid"
+                class="btn btn-primary"
+                >Save</button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,34 @@
+<div class="container my-5">
+    <h1 class="mb-3">Cases List</h1>
+    <input class="form-control" type="text" placeholder="Search..." [(ngModel)]="searchText">
+    <table class="table" *ngIf="caseslist && caseslist.length > 0">
+        <thead>
+          <tr>
+             <th>Id</th>
+             <th>Name</th>
+             <th>Description</th>
+             <th>StartDate</th>
+             <th>FinishDate</th>
+             <th>Status</th>
+             <th>StatusDescription</th>
+             <th>AssignedUser</th>
+             <th>OpenedUser</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let case of caseslist | search: searchText">
+                <td>{{ case.id }}</td>
+                <td>{{ case.name }}</td>
+                <td>{{ case.description }}</td>
+                <td>{{ case.startDate }}</td>
+                <td>{{ case.finishDate }}</td>
+                <td>{{ case.status }}</td>
+                <td>{{ case.statusDescription }}</td>
+                <td>{{ case.assignedUser }}</td>
+                <td>{{ case.openedUser }}</td>
+                <td><a [routerLink]="['caseStatus','getDetail',case.id]">Detail</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!caseslist || caseslist.length <= 0">No cases found.</p>
+</div>

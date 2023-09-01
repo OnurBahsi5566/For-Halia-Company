@@ -1,0 +1,23 @@
+<div class="container my-5">
+    <h1 class="mb-3">My Cases List</h1>
+    <table class="table" *ngIf="assignedCases && assignedCases.length > 0">
+        <thead>
+          <tr>
+             <th>Id</th>
+             <th>CaseName</th>
+             <th>ActionedUser</th>
+             <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let assignedCase of assignedCases">
+                <td>{{ assignedCase.id }}</td>
+                <td>{{ assignedCase.caseName }}</td>
+                <td>{{ assignedCase.actionedUserName }}</td>
+                <td>{{ assignedCase.description }}</td>
+                <td><a [routerLink]="['assignedCase','answer',assignedCase.id]">Complete</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!assignedCases || assignedCases.length <= 0">No assigned case found.</p>
+</div>

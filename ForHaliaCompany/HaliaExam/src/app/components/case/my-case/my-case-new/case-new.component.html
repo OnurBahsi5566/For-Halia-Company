@@ -1,0 +1,64 @@
+<form [formGroup]="myCaseForm" (ngSubmit)="caseSaved()"
+ class="border p-3 rounded-3">
+    <div class="row g-0">
+    <div class="col text-center p-2 mb-3 bg-light">
+        <span class="fs-3">New Case</span>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name"
+            formControlName="name">
+             <div class="form-text text-danger" 
+            *ngIf="Name.errors?.['required'] && (Name.touched 
+            || Name.dirty)">
+            Name is required.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description"
+            formControlName="description"></textarea>
+            <div class="form-text text-danger" 
+            *ngIf="Description.errors?.['required'] && (Description.touched 
+            || Description.dirty)">
+            Description is required.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="date" class="form-control" id="startDate"
+            formControlName="startDate">
+            <div class="form-text text-danger" 
+            *ngIf="StartDate.errors?.['required'] && (StartDate.touched 
+            || StartDate.dirty)">
+            Start Date is required.
+            </div>
+        </div>
+        <div class="col mb-3">
+            <label for="finishDate" class="form-label">Finish Date</label>
+            <input type="date" class="form-control" id="finishDate"
+            formControlName="finishDate">
+            <div class="form-text text-danger" 
+            *ngIf="FinishDate.errors?.['required'] && (FinishDate.touched 
+            || FinishDate.dirty)">
+            Finish Date is required.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="d-grid">
+                <button type="submit" 
+                [disabled]="myCaseForm.invalid"
+                class="btn btn-primary"
+                >Save</button>
+            </div>
+        </div>
+    </div>
+</form>

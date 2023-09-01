@@ -1,0 +1,60 @@
+
+<form [formGroup]="assignedAnswerForm" (ngSubmit)="assignedAnswer()" 
+ class="border p-3 rounded-3">
+    <div class="row g-0">
+    <div class="col text-center p-2 mb-3 bg-light">
+        <span class="fs-3">Assigned Answer</span>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <input type="hidden" class="form-control" id="id"
+            formControlName="id" [(ngModel)]="assignedCaseDetail.id"> 
+            <label for="caseName" class="form-label">Case Name</label> 
+            <input type="text" class="form-control" id="caseName"
+            formControlName="caseName" [(ngModel)]="assignedCaseDetail.caseName" [readOnly]="true">
+            <input type="hidden" class="form-control" id="caseid"
+            formControlName="caseid" [(ngModel)]="assignedCaseDetail.caseId">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-control" id="status" formControlName="status"> 
+                 <option value="Resolved">
+                     Resolved
+                 </option>
+                 <option value="Not Resolved">
+                    Not Resolved
+                </option>
+             </select>
+             <div class="form-text text-danger" 
+             *ngIf="Status.errors?.['required'] && (Status.touched 
+             || Status.dirty)">
+             Status is required.
+             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="statusDescription" class="form-label">Status Description</label>
+            <textarea class="form-control" id="statusDescription"
+            formControlName="statusDescription"></textarea>
+            <div class="form-text text-danger" 
+            *ngIf="StatusDescription.errors?.['required'] && (StatusDescription.touched 
+            || StatusDescription.dirty)">
+            Status Description is required.
+        </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="d-grid">
+                <button type="submit" 
+                [disabled]="assignedAnswerForm.invalid"
+                class="btn btn-primary"
+                >Save</button>
+            </div>
+        </div>
+    </div>
+</form>
